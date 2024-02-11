@@ -1,4 +1,7 @@
-﻿namespace TicTacToe;
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace TicTacToe;
 
 partial class MainForm
 {
@@ -40,12 +43,14 @@ partial class MainForm
         button_0_1 = new Button();
         button_0_0 = new Button();
         TurnLabel = new Label();
+        xWins = new Label();
+        oWins = new Label();
         SuspendLayout();
         // 
         // TitleLabel
         // 
         TitleLabel.Anchor = AnchorStyles.None;
-        TitleLabel.Font = new Font("Calibri", 21.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+        TitleLabel.Font = new Font("Calibri", 21.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
         TitleLabel.Location = new Point(52, -3);
         TitleLabel.Margin = new Padding(0);
         TitleLabel.Name = "TitleLabel";
@@ -56,7 +61,7 @@ partial class MainForm
         // button_1_0
         // 
         button_1_0.Anchor = AnchorStyles.None;
-        button_1_0.Font = new Font("MS Reference Sans Serif", 26.25F, FontStyle.Bold);
+        button_1_0.Font = new Font("MS Reference Sans Serif", 26.25F, FontStyle.Bold, GraphicsUnit.Point);
         button_1_0.Location = new Point(92, 46);
         button_1_0.Name = "button_1_0";
         button_1_0.Size = new Size(50, 50);
@@ -67,7 +72,7 @@ partial class MainForm
         // button_1_1
         // 
         button_1_1.Anchor = AnchorStyles.None;
-        button_1_1.Font = new Font("MS Reference Sans Serif", 26.25F, FontStyle.Bold);
+        button_1_1.Font = new Font("MS Reference Sans Serif", 26.25F, FontStyle.Bold, GraphicsUnit.Point);
         button_1_1.Location = new Point(92, 101);
         button_1_1.Name = "button_1_1";
         button_1_1.Size = new Size(50, 50);
@@ -78,7 +83,7 @@ partial class MainForm
         // button_1_2
         // 
         button_1_2.Anchor = AnchorStyles.None;
-        button_1_2.Font = new Font("MS Reference Sans Serif", 26.25F, FontStyle.Bold);
+        button_1_2.Font = new Font("MS Reference Sans Serif", 26.25F, FontStyle.Bold, GraphicsUnit.Point);
         button_1_2.Location = new Point(92, 156);
         button_1_2.Name = "button_1_2";
         button_1_2.Size = new Size(50, 50);
@@ -89,7 +94,7 @@ partial class MainForm
         // button_2_2
         // 
         button_2_2.Anchor = AnchorStyles.None;
-        button_2_2.Font = new Font("MS Reference Sans Serif", 26.25F, FontStyle.Bold);
+        button_2_2.Font = new Font("MS Reference Sans Serif", 26.25F, FontStyle.Bold, GraphicsUnit.Point);
         button_2_2.Location = new Point(147, 156);
         button_2_2.Name = "button_2_2";
         button_2_2.Size = new Size(50, 50);
@@ -100,7 +105,7 @@ partial class MainForm
         // button_2_1
         // 
         button_2_1.Anchor = AnchorStyles.None;
-        button_2_1.Font = new Font("MS Reference Sans Serif", 26.25F, FontStyle.Bold);
+        button_2_1.Font = new Font("MS Reference Sans Serif", 26.25F, FontStyle.Bold, GraphicsUnit.Point);
         button_2_1.Location = new Point(147, 101);
         button_2_1.Name = "button_2_1";
         button_2_1.Size = new Size(50, 50);
@@ -111,7 +116,7 @@ partial class MainForm
         // button_2_0
         // 
         button_2_0.Anchor = AnchorStyles.None;
-        button_2_0.Font = new Font("MS Reference Sans Serif", 26.25F, FontStyle.Bold);
+        button_2_0.Font = new Font("MS Reference Sans Serif", 26.25F, FontStyle.Bold, GraphicsUnit.Point);
         button_2_0.Location = new Point(147, 46);
         button_2_0.Name = "button_2_0";
         button_2_0.Size = new Size(50, 50);
@@ -122,7 +127,7 @@ partial class MainForm
         // button_0_2
         // 
         button_0_2.Anchor = AnchorStyles.None;
-        button_0_2.Font = new Font("MS Reference Sans Serif", 26.25F, FontStyle.Bold);
+        button_0_2.Font = new Font("MS Reference Sans Serif", 26.25F, FontStyle.Bold, GraphicsUnit.Point);
         button_0_2.Location = new Point(37, 156);
         button_0_2.Name = "button_0_2";
         button_0_2.Size = new Size(50, 50);
@@ -133,7 +138,7 @@ partial class MainForm
         // button_0_1
         // 
         button_0_1.Anchor = AnchorStyles.None;
-        button_0_1.Font = new Font("MS Reference Sans Serif", 26.25F, FontStyle.Bold);
+        button_0_1.Font = new Font("MS Reference Sans Serif", 26.25F, FontStyle.Bold, GraphicsUnit.Point);
         button_0_1.Location = new Point(37, 101);
         button_0_1.Name = "button_0_1";
         button_0_1.Size = new Size(50, 50);
@@ -144,7 +149,7 @@ partial class MainForm
         // button_0_0
         // 
         button_0_0.Anchor = AnchorStyles.None;
-        button_0_0.Font = new Font("MS Reference Sans Serif", 26.25F, FontStyle.Bold);
+        button_0_0.Font = new Font("MS Reference Sans Serif", 26.25F, FontStyle.Bold, GraphicsUnit.Point);
         button_0_0.Location = new Point(37, 46);
         button_0_0.Name = "button_0_0";
         button_0_0.Size = new Size(50, 50);
@@ -155,19 +160,43 @@ partial class MainForm
         // TurnLabel
         // 
         TurnLabel.Anchor = AnchorStyles.None;
-        TurnLabel.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        TurnLabel.Location = new Point(67, 28);
+        TurnLabel.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
+        TurnLabel.Location = new Point(83, 28);
         TurnLabel.Name = "TurnLabel";
-        TurnLabel.Size = new Size(100, 15);
+        TurnLabel.Size = new Size(70, 15);
         TurnLabel.TabIndex = 10;
         TurnLabel.Text = "Turn: X";
         TurnLabel.TextAlign = ContentAlignment.MiddleCenter;
+        // 
+        // xWins
+        // 
+        xWins.Anchor = AnchorStyles.None;
+        xWins.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
+        xWins.Location = new Point(2, 28);
+        xWins.Name = "xWins";
+        xWins.Size = new Size(75, 15);
+        xWins.TabIndex = 11;
+        xWins.Text = "X Wins: 0";
+        xWins.TextAlign = ContentAlignment.MiddleCenter;
+        // 
+        // oWins
+        // 
+        oWins.Anchor = AnchorStyles.None;
+        oWins.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
+        oWins.Location = new Point(159, 28);
+        oWins.Name = "oWins";
+        oWins.Size = new Size(75, 15);
+        oWins.TabIndex = 12;
+        oWins.Text = "O Wins: 0";
+        oWins.TextAlign = ContentAlignment.MiddleCenter;
         // 
         // MainForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(234, 211);
+        Controls.Add(oWins);
+        Controls.Add(xWins);
         Controls.Add(TurnLabel);
         Controls.Add(button_0_2);
         Controls.Add(button_0_1);
@@ -183,6 +212,7 @@ partial class MainForm
         MinimumSize = new Size(250, 250);
         Name = "MainForm";
         Text = "TicTacToe";
+        Load += OnLoad;
         ResumeLayout(false);
     }
 
@@ -199,4 +229,6 @@ partial class MainForm
     private Button button_0_1;
     private Button button_0_0;
     private Label TurnLabel;
+    private Label xWins;
+    private Label oWins;
 }
